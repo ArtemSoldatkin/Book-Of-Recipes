@@ -25,7 +25,50 @@ export interface MyIngredient {
 
 export type MyIngredientList = MyIngredient[];
 
+export type Steps = string[];
+
+export interface Recipe {
+    id: number;
+    name: string;
+    ingredients: IngredientList;
+    steps: Steps;
+}
+
+export type RecipeList = Recipe[];
+
 //EQUALS
+export const stepsEq = (_a: Steps, _b: Steps) => {
+    if (_a === _b) return true;
+    if (_a.length !== _b.length) return false;
+    const a = [..._a],
+        b = [..._b];
+    a.sort(), b.sort();
+    for (let i = 0; i < a.length; ++i) {
+        if (a[i] !== b[i]) return false;
+    }
+};
+
+export const recipeEq = (a: Recipe, b: Recipe) => {
+    if (
+        a.id !== b.id ||
+        a.name !== b.name ||
+        !ingredientListEq(a.ingredients, b.ingredients || !stepsEq(a.steps, b.steps))
+    )
+        return false;
+    return true;
+};
+export const recipeListEq = (_a: RecipeList, _b: RecipeList) => {
+    if (_a === _b) return true;
+    if (_a.length !== _b.length) return false;
+    const a = [..._a],
+        b = [..._b];
+    a.sort(), b.sort();
+    for (let i = 0; i < a.length; ++i) {
+        if (!recipeEq(a[i], b[i])) return false;
+    }
+    return true;
+};
+
 export const ingredientEq = (a: Ingredient, b: Ingredient) => {
     if (a.id !== b.id || a.name !== b.name) return false;
     return true;

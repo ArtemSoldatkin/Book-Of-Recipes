@@ -1,8 +1,9 @@
 import React, { memo, useState } from 'react';
-import Step from './step';
 import { connect } from 'react-redux';
+import { FormControl, FormControlProps, Button } from 'react-bootstrap';
 import { State } from '../../../store';
 import { addStep, editStep, removeStep } from '../../../store/my_recipe/actions';
+import Step from './step';
 import './style.scss';
 
 const mapStateToProps = (state: State) => ({ my_recipe: state.my_recipe.steps });
@@ -28,17 +29,21 @@ export default connect(
             <div className="steps">
                 <div className="steps_form">
                     <p className="steps_form__num">Шаг: {my_recipe.length + 1}</p>
-                    <textarea
+                    <FormControl
+                        as="textarea"
+                        rows="3"
                         className="steps_form__it"
-                        onChange={e => setStep(e.target.value)}
+                        onChange={(e: React.FormEvent<FormControlProps>) =>
+                            e.currentTarget.value !== undefined && setStep(e.currentTarget.value)
+                        }
                         value={step}
                     />
-                    <button
+                    <Button
                         className="steps_form__btn"
                         onClick={handle_click}
                         disabled={step.length === 0}>
                         Добавить
-                    </button>
+                    </Button>
                 </div>
                 {my_recipe.map((text, i) => (
                     <Step

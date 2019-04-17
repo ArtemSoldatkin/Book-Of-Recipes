@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave } from '@fortawesome/free-regular-svg-icons';
-
+import { Button, FormControl } from 'react-bootstrap';
 import Ingridients from '../ingredients';
 import Steps from '../steps';
 import './style.scss';
@@ -25,11 +25,11 @@ export default connect(
     <div className="new_recipe">
         <div className="new_recipe__t">
             <p className="new_recipe__tx">Новый рецепт</p>
-            <button className="new_recipe__btn" onClick={addRecipe}>
+            <Button className="new_recipe__btn" onClick={addRecipe}>
                 <FontAwesomeIcon icon={faSave} />
-            </button>
+            </Button>
         </div>
-        <input type="file" />
+        <FormControl type="file" />
         <p className="new_recipe__sub_tx">Ингредиенты</p>
         <Ingridients />
         <p className="new_recipe__sub_tx">Шаги приготовления</p>

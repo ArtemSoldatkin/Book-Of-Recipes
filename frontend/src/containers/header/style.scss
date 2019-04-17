@@ -3,8 +3,8 @@
 @import '../../style/mixins.scss';
 
 .h {
-    padding: $large-space $main-padding;
     @include direction(row);
+    padding: $large-space $main-padding;
     @extend %primary-color;
     @extend %header-font;
     &__logo {

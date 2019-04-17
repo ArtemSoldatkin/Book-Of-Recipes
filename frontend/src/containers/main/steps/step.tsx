@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { FormControl, FormControlProps, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faEdit, faSave } from '@fortawesome/free-regular-svg-icons';
 
@@ -22,20 +23,24 @@ export default ({ id, step, remove, edit }: CmpProps) => {
         <div className="step">
             <p className="step__num">Шаг: {id + 1}</p>
             {isEdited ? (
-                <textarea
+                <FormControl
+                    as="textarea"
+                    rows="3"
                     className="step__tx"
+                    onChange={(e: React.FormEvent<FormControlProps>) =>
+                        e.currentTarget.value !== undefined && setEStep(e.currentTarget.value)
+                    }
                     value={eStep}
-                    onChange={e => setEStep(e.target.value)}
                 />
             ) : (
                 <p className="step__tx">{step}</p>
             )}
-            <button className="step__btn" onClick={() => setIsEdited(!isEdited)}>
+            <Button className="step__btn" onClick={() => setIsEdited(!isEdited)}>
                 {isEdited ? <FontAwesomeIcon icon={faSave} /> : <FontAwesomeIcon icon={faEdit} />}
-            </button>
-            <button className="step__btn" onClick={() => remove(id)}>
+            </Button>
+            <Button className="step__btn" onClick={() => remove(id)}>
                 <FontAwesomeIcon icon={faTrashAlt} />
-            </button>
+            </Button>
         </div>
     );
 };
