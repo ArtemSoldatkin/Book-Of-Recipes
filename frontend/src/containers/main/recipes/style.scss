@@ -1,0 +1,41 @@
+@import '../../../style/theme.scss';
+@import '../../../style/extends.scss';
+@import '../../../style/mixins.scss';
+
+.recipes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-auto-rows: 200px;
+    grid-gap: 15px;
+}
+
+.recipe_card {
+    @include direction(column);
+    padding: $medium-space;
+    @extend %surface-color;
+    border: $border;
+    border-radius: $border-radius;
+    cursor: pointer;
+    box-shadow: 0px 0px 4px 0px #ffffff;
+
+    &__t {
+        @include text($large, $bold);
+        flex: 1 0;
+    }
+    &__ingrs {
+        @include direction(row);
+        @include text($medium, $normal);
+        flex: 0 0;
+        margin: 0;
+        padding: 0;
+    }
+    &__ingr {
+        list-style-type: none;
+        margin-right: $small-space;
+    }
+}
+
+.recipe_info {
+    width: 80vw;
+    height: 80vh;
+}

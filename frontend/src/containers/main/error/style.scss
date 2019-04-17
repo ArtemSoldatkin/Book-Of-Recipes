@@ -1,0 +1,11 @@
+@import '../../../style/theme.scss';
+@import '../../../style/extends.scss';
+
+.err_404 {
+    color: $error-color;
+    @extend %header-font;
+    text-align: center;
+    &__tx {
+        margin-right: $large-space;
+    }
+}

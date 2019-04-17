@@ -1,0 +1,53 @@
+@import '../../../style/theme.scss';
+@import '../../../style/extends.scss';
+@import '../../../style/mixins.scss';
+
+.steps {
+    flex-grow: 4;
+    @extend %surface-color;
+    border-radius: $border-radius;
+    width: 100%;
+    border: $border;
+}
+
+.steps_form {
+    @include direction(row);
+    @include font(24px, 600);
+    padding: $small-space;
+
+    margin-bottom: $medium-space;
+    &__num {
+        display: contents;
+        margin-right: $medium-space;
+    }
+    &__it {
+        width: 100%;
+        font-size: inherit;
+    }
+    &__btn {
+        border-radius: 0 $border-radius 0 0;
+        @extend %secondary-color;
+        &:disabled {
+            @extend %primary-color;
+        }
+    }
+}
+
+.step {
+    @include direction(row);
+    @include font(24px, 600);
+    padding: $small-space;
+
+    margin-bottom: $medium-space;
+    &__num {
+        display: contents;
+        margin-right: $medium-space;
+    }
+    &__tx {
+        width: 100%;
+        white-space: pre-wrap;
+    }
+    &__btn {
+        @extend %secondary-color;
+    }
+}

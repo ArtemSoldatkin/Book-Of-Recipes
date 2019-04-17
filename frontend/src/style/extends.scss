@@ -1,0 +1,28 @@
+@import './theme.scss';
+@import './mixins.scss';
+
+/*COLORS*/
+%primary-color {
+    background: $primary-color;
+    color: $on-primary-color;
+}
+%secondary-color {
+    background: $secondary-color;
+    color: $on-secondary-color;
+}
+%surface-color {
+    background: $surface-color;
+    color: $on-surface-color;
+}
+%footer-color {
+    background: $footer-color;
+    color: $on-footer-color;
+}
+
+/*TYPOGRAPHY*/
+%large-font {
+    @include font($large-font-size, $large-font-weight);
+}
+%header-font {
+    @include font($header-font-size, $header-font-weight);
+}

@@ -1,0 +1,14 @@
+@import '../../style/theme.scss';
+@import '../../style/extends.scss';
+
+.f {
+    flex: 0 0 auto;
+    @extend %footer-color;
+    &__sign {
+        padding: $large-space $main-padding;
+        text-align: right;
+    }
+    &__author {
+        margin-left: $small-space;
+    }
+}

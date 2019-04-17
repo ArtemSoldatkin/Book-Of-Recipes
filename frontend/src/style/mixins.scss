@@ -1,0 +1,17 @@
+/*FLEX WITH DIRECTION*/
+@mixin direction($direct) {
+    display: flex;
+    flex-direction: $direct;
+}
+/*FONTS*/
+@mixin font($size, $weight) {
+    font-size: $size;
+    font-weight: $weight;
+    line-height: $size;
+}
+
+@mixin text($size-multiplier, $weight-multiplier) {
+    font-size: $base-font-size * $size-multiplier;
+    font-weight: $base-font-weight * $weight-multiplier;
+    line-height: $base-font-size * $size-multiplier;
+}

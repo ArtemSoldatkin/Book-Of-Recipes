@@ -1,0 +1,8 @@
+@import './style/theme.scss';
+@import './style/mixins.scss';
+
+.app {
+    @include direction(column);
+    background: $background-color;
+    height: 100%;
+}

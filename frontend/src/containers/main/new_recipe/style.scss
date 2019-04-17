@@ -1,0 +1,27 @@
+@import '../../../style/theme.scss';
+@import '../../../style/extends.scss';
+@import '../../../style/mixins.scss';
+.new_recipe {
+    @include direction(column);
+    @extend %surface-color;
+    border-radius: $border-radius;
+    padding: $small-space;
+    &__t {
+        @include direction(row);
+        @include font(30px, 600);
+    }
+    &__tx {
+        margin: 0 auto;
+    }
+    &__btn {
+        @extend %secondary-color;
+        font-size: inherit;
+        cursor: pointer;
+        user-select: none;
+        border-radius: 0 $border-radius 0 0;
+    }
+    &__sub_tx {
+        @include font(24px, 500);
+        margin: $medium-space 0 $small-space $border-radius;
+    }
+}

@@ -1,0 +1,47 @@
+/*MULTIPLIER*/
+$medium: 1;
+$small: 0.8;
+$large: 1.2;
+
+$normal: 1;
+$thin: 0.8;
+$bold: 1.2;
+
+/*COLORS*/
+$primary-color: #607d8b;
+$secondary-color: #9c27b0;
+
+$surface-color: white;
+
+$background-color: #eceff1;
+$footer-color: #37474f;
+
+$error-color: red;
+$success-color: green;
+
+/*TYPOGRAPHY COLOR*/
+$on-surface-color: black;
+
+$on-primary-color: white;
+$on-secondary-color: white;
+
+$on-footer-color: white;
+
+/*SPACES*/
+$main-padding: 50px;
+$small-space: 5px;
+$medium-space: 10px;
+$large-space: 15px;
+
+/*TYPOGRAPHY SIZE*/
+$base-font-size: 20px;
+$base-font-weight: 500;
+
+$header-font-size: 50px;
+$header-font-weight: 600;
+$large-font-size: 24px;
+$large-font-weight: 500;
+
+/*BORDER*/
+$border: 1px solid $footer-color;
+$border-radius: 4px;
