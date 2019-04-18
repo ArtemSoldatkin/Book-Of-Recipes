@@ -1,27 +1,24 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Modal } from 'react-bootstrap';
+import { Recipe, recipeEq } from '../../../types';
 
-interface Ingredient {
-    id: number;
-    name: string;
-}
-
-type Ingredients = Ingredient[];
-
-interface Temp {
-    id: number;
-    name: string;
-    steps: string[];
-    ingredients: Ingredients;
-}
 type CmpProps = {
-    recipe: Temp | undefined;
+    recipe: Recipe | undefined;
     show: boolean;
     on_hide: () => void;
 };
 
-export default ({ recipe, show, on_hide }: CmpProps) => {
-    if (!recipe) return <div>Рецепт не найден :(</div>;
+const areEq = (pp: CmpProps, np: CmpProps) =>
+    pp.show !== np.show ||
+    pp.on_hide !== np.on_hide ||
+    (pp.recipe === undefined && np.recipe !== undefined) ||
+    (pp.recipe !== undefined && np.recipe === undefined) ||
+    (pp.recipe && np.recipe && !recipeEq(pp.recipe, np.recipe))
+        ? false
+        : true;
+
+export default memo(({ recipe, show, on_hide }: CmpProps) => {
+    if (!recipe) return <></>;
     return (
         <Modal show={show} onHide={on_hide}>
             <Modal.Header>{recipe.name}</Modal.Header>
@@ -42,4 +39,4 @@ export default ({ recipe, show, on_hide }: CmpProps) => {
             </Modal.Body>
         </Modal>
     );
-};
+}, areEq);
