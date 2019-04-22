@@ -5,6 +5,7 @@ import {
     ADD_INGREDIENT,
     EDIT_INGREDIENT,
     REMOVE_INGREDIENT,
+    SET_IMAGE,
 } from './actions';
 import { Actions } from './actions';
 
@@ -17,11 +18,13 @@ export interface State {
     name: string;
     ingredients: MyIngredient[];
     steps: string[];
+    image: string;
 }
 export const initialState: State = {
     name: 'test',
     ingredients: [],
     steps: [],
+    image: '',
 };
 
 export const reducer = (state: State = initialState, action: Actions) => {
@@ -47,6 +50,8 @@ export const reducer = (state: State = initialState, action: Actions) => {
                     ...state.ingredients.filter(ingredient => ingredient.id !== action.payload),
                 ],
             };
+        case SET_IMAGE:
+            return { ...state, image: action.payload };
         default:
             return state;
     }

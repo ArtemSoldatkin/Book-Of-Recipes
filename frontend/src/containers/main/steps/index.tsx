@@ -1,10 +1,11 @@
 import React, { memo, useState } from 'react';
 import { connect } from 'react-redux';
-import { FormControl, FormControlProps, Button } from 'react-bootstrap';
+import { FormControl, FormControlProps, Button, InputGroup } from 'react-bootstrap';
 import { State } from '../../../store';
 import { addStep, editStep, removeStep } from '../../../store/my_recipe/actions';
 import Step from './step';
 import './style.scss';
+import { primArrEq } from '../../../types';
 
 const mapStateToProps = (state: State) => ({ my_recipe: state.my_recipe.steps });
 const mapDispatchToProps = { addStep, editStep, removeStep };
@@ -15,6 +16,14 @@ interface CmpProps {
     editStep: (id: number, step: string) => void;
     removeStep: (id: number) => void;
 }
+
+const areEq = (pp: CmpProps, np: CmpProps) =>
+    !primArrEq<string>(pp.my_recipe, np.my_recipe) ||
+    pp.addStep !== np.addStep ||
+    pp.editStep !== np.editStep ||
+    pp.removeStep !== np.removeStep
+        ? false
+        : true;
 
 export default connect(
     mapStateToProps,
@@ -27,8 +36,10 @@ export default connect(
         const edit_step = (id: number, text: string) => editStep(id, text);
         return (
             <div className="steps">
-                <div className="steps_form">
-                    <p className="steps_form__num">Шаг: {my_recipe.length + 1}</p>
+                <InputGroup className="steps_form">
+                    <InputGroup.Prepend className="steps_form__num">
+                        Шаг: {my_recipe.length + 1}
+                    </InputGroup.Prepend>
                     <FormControl
                         as="textarea"
                         rows="3"
@@ -38,13 +49,15 @@ export default connect(
                         }
                         value={step}
                     />
-                    <Button
-                        className="steps_form__btn"
-                        onClick={handle_click}
-                        disabled={step.length === 0}>
-                        Добавить
-                    </Button>
-                </div>
+                    <InputGroup.Append>
+                        <Button
+                            className="steps_form__btn"
+                            onClick={handle_click}
+                            disabled={step.length === 0}>
+                            Добавить
+                        </Button>
+                    </InputGroup.Append>
+                </InputGroup>
                 {my_recipe.map((text, i) => (
                     <Step
                         key={`${i}${Date.now()}`}
@@ -56,5 +69,5 @@ export default connect(
                 ))}
             </div>
         );
-    })
+    }, areEq)
 );

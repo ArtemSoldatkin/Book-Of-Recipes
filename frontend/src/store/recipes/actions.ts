@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ThunkAction } from 'redux-thunk';
-import { Recipes as DATA } from './models';
+import { RecipeList as DATA } from '../../types';
 import { start, success, failure, BaseActions } from '../base_actions';
 
 const url = 'http://localhost:8000/api/recipes/';
@@ -12,6 +12,7 @@ export type Actions = BaseActions<DATA, typeof START, typeof SUCCESS, typeof FAI
 
 type ThunkResult = ThunkAction<void, any, undefined, Actions>;
 
+export type GetRecipes = () => void;
 export const getRecipes = (): ThunkResult => async dispatch => {
     dispatch(start(START));
     try {

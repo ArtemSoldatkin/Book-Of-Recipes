@@ -9,10 +9,9 @@ class Ingredient(models.Model):
 
 class Recipe(models.Model):
     name=models.CharField(max_length=200)
-    #ingr=models.CharField(max_length=120, blank=True)
+    image=models.TextField(blank=True)
     steps=ArrayField(models.CharField(max_length=1500), default=list)
     ingredients=models.ManyToManyField(Ingredient, related_name="ingredients")
-
 
     def __str__(self):
         return self.name

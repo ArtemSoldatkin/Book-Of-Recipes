@@ -1,5 +1,7 @@
-import React, { memo } from 'react';
-import { Modal } from 'react-bootstrap';
+import React, { memo, useState, useEffect } from 'react';
+import { Modal, Badge, ProgressBar, Button, ButtonGroup } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUtensils, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { Recipe, recipeEq } from '../../../types';
 
 type CmpProps = {
@@ -19,24 +21,59 @@ const areEq = (pp: CmpProps, np: CmpProps) =>
 
 export default memo(({ recipe, show, on_hide }: CmpProps) => {
     if (!recipe) return <></>;
+    const [curStep, setCurStep] = useState<number>(0);
+    const [now, setNow] = useState<number>(0);
+    useEffect(() => {
+        setNow((curStep / recipe.steps.length) * 100);
+    }, [curStep]);
+
     return (
-        <Modal show={show} onHide={on_hide}>
-            <Modal.Header>{recipe.name}</Modal.Header>
-            <Modal.Body>
-                <div>
-                    {recipe.steps.map((step, i) => (
-                        <div key={`${Date.now()}${i}`}>
-                            <div>Шаг: {i}</div>
-                            <div>{step}</div>
-                        </div>
-                    ))}
+        <Modal className="recipe_info" show={show} onHide={on_hide}>
+            <Modal.Header className="recipe_info__h">{recipe.name}</Modal.Header>
+            <Modal.Body className="recipe_info__b">
+                {now !== 100 ? (
+                    <>
+                        <div className="recipe_info__t">Шаг: {curStep + 1}</div>
+                        <div className="recipe_info__tx">{recipe.steps[curStep]}</div>
+                    </>
+                ) : (
+                    <div className="recipe_info__t  recipe_info-success">
+                        <FontAwesomeIcon className="recipe_info__icon" icon={faUtensils} />
+                        <p>Приятного аппетита!</p>
+                    </div>
+                )}
+                <div className="recipe_info__ac">
+                    <ButtonGroup>
+                        {now !== 0 && (
+                            <Button
+                                className="recipe_info__btn"
+                                onClick={() => setCurStep(curStep - 1)}>
+                                <FontAwesomeIcon className="recipe_info__icon" icon={faArrowLeft} />
+                                Назад
+                            </Button>
+                        )}
+                        {now !== 100 && (
+                            <Button
+                                className="recipe_info__btn"
+                                onClick={() => setCurStep(curStep + 1)}>
+                                Дальше
+                                <FontAwesomeIcon
+                                    className="recipe_info__icon"
+                                    icon={faArrowRight}
+                                />
+                            </Button>
+                        )}
+                    </ButtonGroup>
+                    <ProgressBar now={now} label={`${now}%`} srOnly />
                 </div>
-                <ul>
-                    {recipe.ingredients.map((ingr, i) => (
-                        <li key={`${Date.now()}${ingr.id}${i}`}>{ingr.name}</li>
-                    ))}
-                </ul>
             </Modal.Body>
+            <Modal.Footer className="recipe_info__f">
+                {recipe.ingredients.map((ingr, i) => (
+                    <Badge key={`${Date.now()}${ingr.id}${i}`} variant="primary">
+                        {ingr.name}
+                    </Badge>
+                ))}
+            </Modal.Footer>
         </Modal>
     );
 }, areEq);

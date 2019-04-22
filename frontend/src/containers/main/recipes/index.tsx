@@ -1,8 +1,8 @@
 import React, { memo, useEffect, useState, useMemo } from 'react';
 import { connect } from 'react-redux';
 import { State } from '../../../store';
-import { getRecipes } from '../../../store/recipes/actions';
-import { GetRecipes } from '../../../store/recipes/models';
+import { getRecipes, GetRecipes } from '../../../store/recipes/actions';
+
 import { AsyncData, RecipeList, recipeListEq } from '../../../types';
 import RecipeActions from './actions';
 import RecipeCard from './card';
@@ -49,6 +49,7 @@ export default connect(
                             id={card.id}
                             name={card.name}
                             ingredients={card.ingredients}
+                            image={card.image}
                             setID={setID}
                         />
                     ))}

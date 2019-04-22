@@ -29,7 +29,10 @@ export default () => {
             </div>
             <div className="recipes_ac__filter">Filter</div>
             <div className="recipes_ac__new">
-                <Link to="/new-recipe">ADD NEW</Link>
+                Не нашли нужного рецепта?
+                <Link to="/new-recipe">
+                    <p className="recipes_ac__new_a">Добавьте свой!</p>
+                </Link>
             </div>
         </div>
     );

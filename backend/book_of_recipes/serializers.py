@@ -25,6 +25,7 @@ class RecipeSerializer(serializers.ModelSerializer):
     def update(self, recipe, validated_data):
         ingredients=validated_data.pop('ingredients')
         recipe.name=validated_data['name']
+        recipe.image = validated_data['image']
         recipe.steps=validated_data['steps']
         for ingredient in ingredient_list:
             ingredient, created = Ingredient.objects.get_or_create(name=ingredient['name'])

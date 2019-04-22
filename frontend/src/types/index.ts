@@ -32,11 +32,24 @@ export interface Recipe {
     name: string;
     ingredients: IngredientList;
     steps: Steps;
+    image: string;
 }
 
 export type RecipeList = Recipe[];
 
 //EQUALS
+export const primArrEq = <T>(_a: T[], _b: T[]) => {
+    if (_a === _b) return true;
+    if (_a.length !== _b.length) return false;
+    const a = [..._a],
+        b = [..._b];
+    a.sort(), b.sort();
+    for (let i = 0; i < a.length; ++i) {
+        if (a[i] !== b[i]) return false;
+    }
+    return true;
+};
+
 export const stepsEq = (_a: Steps, _b: Steps) => {
     if (_a === _b) return true;
     if (_a.length !== _b.length) return false;
@@ -46,12 +59,14 @@ export const stepsEq = (_a: Steps, _b: Steps) => {
     for (let i = 0; i < a.length; ++i) {
         if (a[i] !== b[i]) return false;
     }
+    return true;
 };
 
 export const recipeEq = (a: Recipe, b: Recipe) => {
     if (
         a.id !== b.id ||
         a.name !== b.name ||
+        a.image !== b.image ||
         !ingredientListEq(a.ingredients, b.ingredients || !stepsEq(a.steps, b.steps))
     )
         return false;

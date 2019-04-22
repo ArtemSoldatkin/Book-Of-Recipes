@@ -6,6 +6,7 @@ interface CmpProps {
     id: number;
     name: string;
     ingredients: IngredientList;
+    image: string;
     setID: (id: number) => void;
 }
 
@@ -17,9 +18,15 @@ const areEq = (pp: CmpProps, np: CmpProps) =>
         ? false
         : true;
 
-export default memo(
-    ({ id, name, ingredients, setID }: CmpProps) => (
-        <article className="recipe_card" onClick={() => setID(id)}>
+export default memo(({ id, name, ingredients, image, setID }: CmpProps) => {
+    const style = {
+        background:
+            'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(' + image + ') no-repeat',
+        backgroundSize: '100% 100%'
+    };
+
+    return (
+        <article className="recipe_card" style={style} onClick={() => setID(id)}>           
             <p className="recipe_card__t">{name}</p>
             <div className="recipe_card__ingrs">
                 {ingredients.map((ingr, i) => (
@@ -32,6 +39,5 @@ export default memo(
                 ))}
             </div>
         </article>
-    ),
-    areEq
-);
+    );
+}, areEq);

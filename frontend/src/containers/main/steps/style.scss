@@ -14,11 +14,10 @@
     @include direction(row);
     @include font(24px, 600);
     padding: $small-space;
-
     margin-bottom: $medium-space;
     &__num {
         display: contents;
-        margin-right: $medium-space;
+        padding: $medium-space;
     }
     &__it {
         width: 100%;

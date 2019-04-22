@@ -6,6 +6,8 @@ export const ADD_INGREDIENT = '[my_recipe] ADD_INGREDIENT';
 export const EDIT_INGREDIENT = '[my_recipe] EDIT_INGREDIENT';
 export const REMOVE_INGREDIENT = '[my_recipe] REMOVE_INGREDIENT';
 
+export const SET_IMAGE = '[my_recipe] SET_IMAGE';
+
 interface AddStepType {
     type: typeof ADD_STEP;
     payload: string;
@@ -38,14 +40,18 @@ interface RemoveIngredientType {
     type: typeof REMOVE_INGREDIENT;
     payload: number;
 }
-
+interface SetImageType {
+    type: typeof SET_IMAGE;
+    payload: string;
+}
 export type Actions =
     | AddStepType
     | EditStepType
     | RemoveStepType
     | AddIngredientType
     | EditIngredientType
-    | RemoveIngredientType;
+    | RemoveIngredientType
+    | SetImageType;
 
 export const addStep = (step: string): AddStepType => ({
     type: ADD_STEP,
@@ -78,4 +84,10 @@ export type MyRemoveIngredient = (id: number) => void;
 export const my_remove_ingredient = (id: number): RemoveIngredientType => ({
     type: REMOVE_INGREDIENT,
     payload: id,
+});
+
+export type SetImage = (img: string) => void;
+export const set_image = (img: string): SetImageType => ({
+    type: SET_IMAGE,
+    payload: img,
 });
