@@ -4,95 +4,24 @@
 
 .ingrs {
     @include direction(row);
-}
-
-/*
-.ingrs {
-    @include direction(row);
-
-    flex-grow: 1;
-    padding: $small-space;
-    @extend %surface-color;
     border: $border;
     border-radius: $border-radius;
+    padding: $small-space;
 }
-
-
 
 .ingr {
-    @include direction(column);
-    height: 350px;
-    flex-grow: 1;
-    padding: $small-space / 2;
+    flex: 50%;
     &__ac {
-        @include direction(row);
-        line-height: 20px;
-        font-size: 20px;
-        font-weight: 500;
-        height: 20px;
+        margin-bottom: $small-space;
+        @include text($medium, $bold);
     }
-    &__wrap_it {
-        @include direction(row);
-        border-bottom: $border;
-        @extend %surface-color;
-        width: 100%;
+    &__lst {
+        height: 300px;
+        overflow-y: scroll;
     }
-    &__search_it {
-        background: none;
-        color: inherit;
-    }
-    &__it {
-        border: none;
-        background: none;
-        color: inherit;
-        width: 100%;
-    }
-    &__btn {
-        @extend %secondary-color;
-        &:disabled {
-            @extend %primary-color;
-        }
-    }
-    &__list {
-        height: 100%;
-        padding: 0 0 0 10px;
-        overflow: scroll;
-    }
-    &__el {
-        @include direction(row);
-        cursor: pointer;
-        user-select: none;
-        list-style-type: none;
-    }
-    &-my {
-        flex-grow: 4;
+    &__el_btn {
+        float: right;
+        color: $error-color;
+        @extend %clickable;
     }
 }
-
-.my_ingr {
-    @include direction(row);
-    @include font(20px, 500);
-    cursor: pointer;
-    user-select: none;
-    list-style-type: none;
-    border-bottom: $border;
-    padding: $small-space;
-    &__t {
-        width: 100%;
-    }
-    &__it {
-        border: none;
-        border-bottom: $border;
-        font-size: inherit;
-    }
-    &__sign {
-        @include font(16px, 500);
-        margin: 0 $small-space;
-    }
-    &__btn {
-        border: none;
-        background: none;
-        cursor: pointer;
-    }
-}
-*/

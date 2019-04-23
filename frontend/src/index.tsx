@@ -7,7 +7,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import * as serviceWorker from './serviceWorker';
 import { reducer } from './store';
 import App from './App';
-import 'bootstrap/dist/css/bootstrap.css';
+//import 'bootstrap/dist/css/bootstrap.css';
+import './style/custom.scss';
 import './index.scss';
 
 const composeEnhancers =

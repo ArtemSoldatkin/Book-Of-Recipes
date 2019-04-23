@@ -2,7 +2,14 @@ import React, { memo, useState } from 'react';
 import { connect } from 'react-redux';
 import { FormControl, FormControlProps, Button, InputGroup } from 'react-bootstrap';
 import { State } from '../../../store';
-import { addStep, editStep, removeStep } from '../../../store/my_recipe/actions';
+import {
+    addStep,
+    editStep,
+    removeStep,
+    AddStep,
+    EditStep,
+    RemoveStep,
+} from '../../../store/my_recipe/actions';
 import Step from './step';
 import './style.scss';
 import { primArrEq } from '../../../types';
@@ -12,9 +19,9 @@ const mapDispatchToProps = { addStep, editStep, removeStep };
 
 interface CmpProps {
     my_recipe: string[];
-    addStep: (step: string) => void;
-    editStep: (id: number, step: string) => void;
-    removeStep: (id: number) => void;
+    addStep: AddStep;
+    editStep: EditStep;
+    removeStep: RemoveStep;
 }
 
 const areEq = (pp: CmpProps, np: CmpProps) =>

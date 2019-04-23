@@ -53,16 +53,19 @@ export type Actions =
     | RemoveIngredientType
     | SetImageType;
 
+export type AddStep = (step: string) => void;
 export const addStep = (step: string): AddStepType => ({
     type: ADD_STEP,
     payload: step,
 });
 
+export type EditStep = (id: number, step: string) => void;
 export const editStep = (id: number, step: string): EditStepType => ({
     type: EDIT_STEP,
     payload: { id, step },
 });
 
+export type RemoveStep = (id: number) => void;
 export const removeStep = (id: number): RemoveStepType => ({
     type: REMOVE_STEP,
     payload: id,

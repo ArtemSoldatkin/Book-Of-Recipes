@@ -31,20 +31,21 @@ export default memo(({ recipe, show, on_hide }: CmpProps) => {
         <Modal className="recipe_info" show={show} onHide={on_hide}>
             <Modal.Header className="recipe_info__h">{recipe.name}</Modal.Header>
             <Modal.Body className="recipe_info__b">
-                {now !== 100 ? (
-                    <>
-                        <div className="recipe_info__t">Шаг: {curStep + 1}</div>
-                        <div className="recipe_info__tx">{recipe.steps[curStep]}</div>
-                    </>
-                ) : (
-                    <div className="recipe_info__t  recipe_info-success">
-                        <FontAwesomeIcon className="recipe_info__icon" icon={faUtensils} />
-                        <p>Приятного аппетита!</p>
-                    </div>
-                )}
+                {recipe.steps.length > 0 &&
+                    (now !== 100 ? (
+                        <>
+                            <div className="recipe_info__t">Шаг: {curStep + 1}</div>
+                            <div className="recipe_info__tx">{recipe.steps[curStep]}</div>
+                        </>
+                    ) : (
+                        <div className="recipe_info__t  recipe_info-success">
+                            <FontAwesomeIcon className="recipe_info__icon" icon={faUtensils} />
+                            <p>Приятного аппетита!</p>
+                        </div>
+                    ))}
                 <div className="recipe_info__ac">
                     <ButtonGroup>
-                        {now !== 0 && (
+                        {recipe.steps.length > 0 && now !== 0 && (
                             <Button
                                 className="recipe_info__btn"
                                 onClick={() => setCurStep(curStep - 1)}>
@@ -52,7 +53,7 @@ export default memo(({ recipe, show, on_hide }: CmpProps) => {
                                 Назад
                             </Button>
                         )}
-                        {now !== 100 && (
+                        {recipe.steps.length > 0 && now !== 100 && (
                             <Button
                                 className="recipe_info__btn"
                                 onClick={() => setCurStep(curStep + 1)}>

@@ -1,0 +1,16 @@
+@import '../../style/theme.scss';
+@import '../../style/extends.scss';
+@import '../../style/mixins.scss';
+
+.img_upld {
+    max-width: 50%;
+    margin: $medium-space 0;
+    &__btn_lbl {
+        display: contents;
+        margin: 0;
+        @extend %clickable;
+    }
+    &__file {
+        display: none;
+    }
+}

@@ -8,7 +8,7 @@ import {
     GetIngredientList,
 } from '../../../store/ingredients/actions';
 import { my_add_ingredient, MyAddIngredient } from '../../../store/my_recipe/actions';
-import { AsyncData, IngredientList } from '../../../types';
+import { AsyncData, IngredientList, ingredientListEq } from '../../../types';
 import Ingredients from './list';
 import MyIngridients from './my_list';
 import './style.scss';
@@ -29,6 +29,16 @@ interface CmpProps {
     to_recipe: MyAddIngredient;
 }
 
+const areEq = (pp: CmpProps, np: CmpProps) =>
+    pp.add_new !== np.add_new ||
+    pp.get_list !== np.get_list ||
+    pp.to_recipe !== np.to_recipe ||
+    pp.ingredients.loading !== np.ingredients.loading ||
+    pp.ingredients.error !== np.ingredients.error ||
+    !ingredientListEq(pp.ingredients.data, np.ingredients.data)
+        ? false
+        : true;
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps
@@ -48,5 +58,5 @@ export default connect(
                 <MyIngridients />
             </div>
         );
-    })
+    }, areEq)
 );

@@ -12,16 +12,12 @@ interface CmpProps {
     to_recipe: MyAddIngredient;
 }
 
-const areEq = (pp: CmpProps, np: CmpProps) => {
-    if (
-        pp.add_new !== np.add_new ||
-        pp.to_recipe !== np.to_recipe ||
-        !ingredientListEq(pp.ingredient_list, np.ingredient_list)
-    )
-        return false;
-
-    return true;
-};
+const areEq = (pp: CmpProps, np: CmpProps) =>
+    pp.add_new !== np.add_new ||
+    pp.to_recipe !== np.to_recipe ||
+    !ingredientListEq(pp.ingredient_list, np.ingredient_list)
+        ? false
+        : true;
 
 export default memo(({ ingredient_list, add_new, to_recipe }: CmpProps) => {
     const [search, setSearch] = useState<string>('');
@@ -46,10 +42,7 @@ export default memo(({ ingredient_list, add_new, to_recipe }: CmpProps) => {
                     }
                 />
                 <InputGroup.Append>
-                    <Button
-                        variant="outline-secondary"
-                        onClick={handle_click}
-                        disabled={filtered_data.length !== 0}>
+                    <Button onClick={handle_click} disabled={filtered_data.length !== 0}>
                         <FontAwesomeIcon icon={faPlus} />
                     </Button>
                 </InputGroup.Append>

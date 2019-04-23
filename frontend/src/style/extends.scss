@@ -26,3 +26,9 @@
 %header-font {
     @include font($header-font-size, $header-font-weight);
 }
+
+/*CURSOR*/
+%clickable {
+    cursor: pointer;
+    user-select: none;
+}
