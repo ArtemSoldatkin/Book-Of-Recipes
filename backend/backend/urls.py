@@ -15,13 +15,11 @@ Including another URLconf
 """
 from django.urls import path, include
 from rest_framework import routers
-from book_of_recipes.views import IngredientList, RecipeList, TestList, SubTestList
+from book_of_recipes.views import IngredientList, RecipeList
 
 router = routers.DefaultRouter()
 router.register(r'ingredients', IngredientList, 'ingredient-list')
 router.register(r'recipes', RecipeList, 'recipe-list')
-router.register(r't-recipes', TestList, 't-recipe-list')
-router.register(r'st-recipes', SubTestList, 'st-recipe-list')
 urlpatterns = [
     path('api/', include(router.urls))
 ]

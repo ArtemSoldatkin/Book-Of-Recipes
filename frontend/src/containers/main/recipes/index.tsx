@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState, useMemo } from 'react';
 import { connect } from 'react-redux';
 import { State } from '../../../store';
-import { getRecipes, GetRecipes } from '../../../store/recipes/actions';
+import { get_recipes, GetRecipes } from '../../../store/recipes/actions';
 
 import { AsyncData, RecipeList, recipeListEq } from '../../../types';
 import RecipeActions from './actions';
@@ -12,7 +12,7 @@ import './style.scss';
 const mapStateToProps = (state: State) => ({ recipes: state.recipes });
 
 const mapDispatchToProps = {
-    get_recipes: getRecipes,
+    get_recipes: get_recipes,
 };
 
 interface CmpProps {

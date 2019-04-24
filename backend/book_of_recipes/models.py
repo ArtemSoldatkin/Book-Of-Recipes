@@ -15,16 +15,3 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class SubTest(models.Model):
-    name=models.CharField(max_length=120)
-    count=models.IntegerField()
-
-class Test(models.Model):
-    name=models.CharField(max_length=200)
-    steps=ArrayField(models.CharField(max_length=2000), default=list)
-    ingridients=models.ManyToManyField(SubTest, related_name="subtests")
-
-    def __str__(self):
-        return self.name

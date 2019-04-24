@@ -8,15 +8,17 @@ const url = 'http://localhost:8000/api/recipes/';
 export const SUCCESS = '[recipes] SUCCESS';
 export const FAILURE = '[recipes] FAILURE';
 export const START = '[recipes] START';
+
 export type Actions = BaseActions<DATA, typeof START, typeof SUCCESS, typeof FAILURE>;
 
 type ThunkResult = ThunkAction<void, any, undefined, Actions>;
 
 export type GetRecipes = () => void;
-export const getRecipes = (): ThunkResult => async dispatch => {
+export const get_recipes = (): ThunkResult => async (dispatch, getState) => {
     dispatch(start(START));
     try {
-        const { data } = await axios.get(url);
+        const search: string = getState().filters.search;
+        const { data } = await axios.get(url, { params: { search } });
         if (!data) return dispatch(failure(FAILURE, 'error'));
         return dispatch(success(SUCCESS, data));
     } catch (err) {

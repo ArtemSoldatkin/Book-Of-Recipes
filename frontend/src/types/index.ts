@@ -37,6 +37,10 @@ export interface Recipe {
 
 export type RecipeList = Recipe[];
 
+export interface Filters {
+    search: string;
+}
+
 //EQUALS
 export const primArrEq = <T>(_a: T[], _b: T[]) => {
     if (_a === _b) return true;
@@ -97,5 +101,10 @@ export const ingredientListEq = (_a: IngredientList, _b: IngredientList) => {
     for (let i = 0; i < a.length; ++i) {
         if (!ingredientEq(a[i], b[i])) return false;
     }
+    return true;
+};
+
+export const filtersEq = (a: Filters, b: Filters) => {
+    if (a.search !== b.search) return false;
     return true;
 };

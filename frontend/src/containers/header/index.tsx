@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDrumstickBite } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import HeaderActions from './actions';
 import './style.scss';
 
 export default () => (
@@ -18,8 +17,5 @@ export default () => (
                 </div>
             </OverlayTrigger>
         </Link>
-        <div className="h__ac">
-            <HeaderActions />
-        </div>
     </header>
 );
