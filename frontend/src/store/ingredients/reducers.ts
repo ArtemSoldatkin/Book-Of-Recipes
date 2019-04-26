@@ -1,10 +1,10 @@
-import { Ingridients } from './model';
+import { IngredientList } from '../../types';
 import { SUCCESS, FAILURE, START } from './actions';
 import { Actions } from './actions';
 
 export type State = {
     loading: boolean;
-    data: Ingridients;
+    data: IngredientList;
     error: null | string;
 };
 export const initialState: State = {

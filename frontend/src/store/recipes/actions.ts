@@ -2,6 +2,7 @@ import axios from 'axios';
 import { ThunkAction } from 'redux-thunk';
 import { RecipeList as DATA } from '../../types';
 import { start, success, failure, BaseActions } from '../base_actions';
+import { MyRecipe } from '../../types';
 
 const url = 'http://localhost:8000/api/recipes/';
 
@@ -26,19 +27,8 @@ export const get_recipes = (): ThunkResult => async (dispatch, getState) => {
     }
 };
 
-interface MyIngridient {
-    id: number;
-    name: string;
-    count: number;
-}
-
-interface MyRecipe {
-    name: string;
-    ingredients: MyIngridient[];
-    steps: string[];
-}
-
-export const addRecipe = (): ThunkResult => async (dispatch, getState) => {
+export type AddRecipe = () => void;
+export const add_recipe = (): ThunkResult => async (dispatch, getState) => {
     dispatch(start(START));
     try {
         const my_recipe: MyRecipe = getState().my_recipe;

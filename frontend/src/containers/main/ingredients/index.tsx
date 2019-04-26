@@ -39,24 +39,24 @@ const areEq = (pp: CmpProps, np: CmpProps) =>
         ? false
         : true;
 
+export const IngredientsMain = memo(({ ingredients, get_list, add_new, to_recipe }: CmpProps) => {
+    const [mount, setMount] = useState<boolean>(false);
+    useEffect(() => {
+        !mount && get_list(), setMount(true);
+    });
+    return (
+        <div className="ingrs">
+            <Ingredients
+                ingredient_list={ingredients.data}
+                add_new={add_new}
+                to_recipe={to_recipe}
+            />
+            <MyIngridients />
+        </div>
+    );
+}, areEq);
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(
-    memo(({ ingredients, get_list, add_new, to_recipe }: CmpProps) => {
-        const [mount, setMount] = useState<boolean>(false);
-        useEffect(() => {
-            !mount && get_list(), setMount(true);
-        });
-        return (
-            <div className="ingrs">
-                <Ingredients
-                    ingredient_list={ingredients.data}
-                    add_new={add_new}
-                    to_recipe={to_recipe}
-                />
-                <MyIngridients />
-            </div>
-        );
-    }, areEq)
-);
+)(IngredientsMain);

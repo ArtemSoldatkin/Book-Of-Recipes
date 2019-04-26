@@ -8,15 +8,11 @@ import {
     SET_IMAGE,
 } from './actions';
 import { Actions } from './actions';
+import { MyIngredientList } from '../../types';
 
-interface MyIngredient {
-    id: number;
-    name: string;
-    count: number;
-}
 export interface State {
     name: string;
-    ingredients: MyIngredient[];
+    ingredients: MyIngredientList;
     steps: string[];
     image: string;
 }

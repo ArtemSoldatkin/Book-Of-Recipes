@@ -10,15 +10,21 @@ interface CmpProps {
 
 export default memo(({ onChange }: CmpProps) => {
     const [name, setName] = useState<string | null>(null);
-    const handle_change = (file_list: FileList | null) => {
+    const file_reader = (file: File): Promise<string | null> =>
+        new Promise((res, rej) => {
+            const fr = new FileReader();
+            fr.readAsDataURL(file);
+            fr.onerror = () => (fr.abort(), rej(null));
+            fr.onload = () => (typeof fr.result === 'string' ? res(fr.result) : rej(null));
+        });
+    const handle_change = async (file_list: FileList | null): Promise<void> => {
         if (!file_list) return;
         const file = file_list[0];
         if (!file) return;
-        let fr = new FileReader();
-        fr.readAsDataURL(file);
-        fr.onerror = () => fr.abort();
-        fr.onload = () =>
-            typeof fr.result === 'string' && onChange && (onChange(fr.result), setName(file.name));
+        const load = await file_reader(file);
+        if (!load) return;
+        onChange && onChange(load);
+        setName(file.name);
     };
     const remove = () => setName(null);
     useEffect(() => {
@@ -37,9 +43,9 @@ export default memo(({ onChange }: CmpProps) => {
                     />
                 </label>
             </InputGroup.Prepend>
-            <FormControl value={name ? name : ''} disabled />
+            <FormControl className="img_upld__name" value={name ? name : ''} disabled />
             <InputGroup.Append>
-                <Button onClick={remove}>
+                <Button className="img_upld__btn" onClick={remove}>
                     <FontAwesomeIcon icon={faTrashAlt} />
                 </Button>
             </InputGroup.Append>

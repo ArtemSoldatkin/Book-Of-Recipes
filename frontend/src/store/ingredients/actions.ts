@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ThunkAction } from 'redux-thunk';
-import { Ingridients as DATA } from './model';
+import { IngredientList as DATA } from '../../types';
 import { start, success, failure, BaseActions } from '../base_actions';
 const url = 'http://localhost:8000/api/ingredients/';
 

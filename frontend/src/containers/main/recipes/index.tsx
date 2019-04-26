@@ -28,38 +28,38 @@ const areEq = (pp: CmpProps, np: CmpProps) =>
         ? false
         : true;
 
+export const RecipesMain = memo(({ recipes, get_recipes }: CmpProps) => {
+    const [id, setID] = useState<number | null>(null);
+    const [mounted, setMounted] = useState<boolean>(false);
+    useEffect(() => {
+        if (!mounted) get_recipes(), setMounted(true);
+    }, []);
+    const current_recipe = useMemo(() => recipes.data.find(recipe => recipe.id === id), [id]);
+    return (
+        <>
+            <RecipeActions />
+            <div className="recipes">
+                {recipes.data.map((card, i) => (
+                    <RecipeCard
+                        key={`${Date.now()}${card.id}${i}`}
+                        id={card.id}
+                        name={card.name}
+                        ingredients={card.ingredients}
+                        image={card.image}
+                        setID={setID}
+                    />
+                ))}
+            </div>
+            <RecipeInfo
+                recipe={current_recipe}
+                show={id !== null ? true : false}
+                on_hide={() => setID(null)}
+            />
+        </>
+    );
+}, areEq);
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(
-    memo(({ recipes, get_recipes }: CmpProps) => {
-        const [id, setID] = useState<number | null>(null);
-        const [mounted, setMounted] = useState<boolean>(false);
-        useEffect(() => {
-            if (!mounted) get_recipes(), setMounted(true);
-        }, []);
-        const current_recipe = useMemo(() => recipes.data.find(recipe => recipe.id === id), [id]);
-        return (
-            <>
-                <RecipeActions />
-                <div className="recipes">
-                    {recipes.data.map((card, i) => (
-                        <RecipeCard
-                            key={`${Date.now()}${card.id}${i}`}
-                            id={card.id}
-                            name={card.name}
-                            ingredients={card.ingredients}
-                            image={card.image}
-                            setID={setID}
-                        />
-                    ))}
-                </div>
-                <RecipeInfo
-                    recipe={current_recipe}
-                    show={id !== null ? true : false}
-                    on_hide={() => setID(null)}
-                />
-            </>
-        );
-    }, areEq)
-);
+)(RecipesMain);

@@ -29,7 +29,6 @@ interface AddIngredientType {
     payload: {
         id: number;
         name: string;
-        count: number;
     };
 }
 interface EditIngredientType {
@@ -71,10 +70,10 @@ export const removeStep = (id: number): RemoveStepType => ({
     payload: id,
 });
 
-export type MyAddIngredient = (id: number, name: string, count: number) => void;
-export const my_add_ingredient = (id: number, name: string, count: number): AddIngredientType => ({
+export type MyAddIngredient = (id: number, name: string) => void;
+export const my_add_ingredient = (id: number, name: string): AddIngredientType => ({
     type: ADD_INGREDIENT,
-    payload: { id, name, count },
+    payload: { id, name },
 });
 
 export type MyEditIngredient = (id: number, count: number) => void;

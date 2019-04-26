@@ -29,7 +29,9 @@ export default memo(({ recipe, show, on_hide }: CmpProps) => {
 
     return (
         <Modal className="recipe_info" show={show} onHide={on_hide}>
-            <Modal.Header className="recipe_info__h">{recipe.name}</Modal.Header>
+            <Modal.Header className="recipe_info__h" closeButton>
+                {recipe.name}
+            </Modal.Header>
             <Modal.Body className="recipe_info__b">
                 {recipe.steps.length > 0 &&
                     (now !== 100 ? (

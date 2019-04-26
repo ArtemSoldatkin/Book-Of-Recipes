@@ -35,6 +35,7 @@ export default memo(({ ingredient_list, add_new, to_recipe }: CmpProps) => {
                     </InputGroup.Text>
                 </InputGroup.Prepend>
                 <FormControl
+                    className="ingr__search"
                     type="text"
                     value={search}
                     onChange={(e: React.FormEvent<FormControlProps>) =>
@@ -42,7 +43,10 @@ export default memo(({ ingredient_list, add_new, to_recipe }: CmpProps) => {
                     }
                 />
                 <InputGroup.Append>
-                    <Button onClick={handle_click} disabled={filtered_data.length !== 0}>
+                    <Button
+                        className="ingr__search_btn"
+                        onClick={handle_click}
+                        disabled={filtered_data.length !== 0}>
                         <FontAwesomeIcon icon={faPlus} />
                     </Button>
                 </InputGroup.Append>
@@ -52,7 +56,7 @@ export default memo(({ ingredient_list, add_new, to_recipe }: CmpProps) => {
                     <ListGroup.Item
                         className="ingr__el"
                         key={`${Date.now()}${i}${ingredient.id}`}
-                        onClick={() => to_recipe(ingredient.id, ingredient.name, 0)}>
+                        onClick={() => to_recipe(ingredient.id, ingredient.name)}>
                         {ingredient.name}
                     </ListGroup.Item>
                 ))}
