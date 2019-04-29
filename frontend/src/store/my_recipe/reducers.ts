@@ -3,7 +3,6 @@ import {
     EDIT_STEP,
     REMOVE_STEP,
     ADD_INGREDIENT,
-    EDIT_INGREDIENT,
     REMOVE_INGREDIENT,
     SET_IMAGE,
 } from './actions';
@@ -35,10 +34,6 @@ export const reducer = (state: State = initialState, action: Actions) => {
             return { ...state, steps: [...state.steps] };
         case ADD_INGREDIENT:
             return { ...state, ingredients: [...state.ingredients, action.payload] };
-        case EDIT_INGREDIENT:
-            let temp = state.ingredients.find(ingredient => ingredient.id === action.payload.id);
-            if (temp) temp.count = action.payload.count;
-            return { ...state };
         case REMOVE_INGREDIENT:
             return {
                 ...state,

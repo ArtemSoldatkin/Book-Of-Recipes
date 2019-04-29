@@ -19,7 +19,6 @@ export type IngredientList = Ingredient[];
 export interface MyIngredient {
     id: number;
     name: string;
-    count: number;
 }
 export type MyIngredientList = MyIngredient[];
 

@@ -48,7 +48,6 @@ export type Actions =
     | EditStepType
     | RemoveStepType
     | AddIngredientType
-    | EditIngredientType
     | RemoveIngredientType
     | SetImageType;
 
@@ -74,12 +73,6 @@ export type MyAddIngredient = (id: number, name: string) => void;
 export const my_add_ingredient = (id: number, name: string): AddIngredientType => ({
     type: ADD_INGREDIENT,
     payload: { id, name },
-});
-
-export type MyEditIngredient = (id: number, count: number) => void;
-export const my_edit_ingredient = (id: number, count: number): EditIngredientType => ({
-    type: EDIT_INGREDIENT,
-    payload: { id, count },
 });
 
 export type MyRemoveIngredient = (id: number) => void;

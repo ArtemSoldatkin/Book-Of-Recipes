@@ -25,41 +25,44 @@ const areEq = (pp: CmpProps, np: CmpProps) =>
         ? false
         : true;
 
+export const RecipesActions = memo(({ filters, set_search, get_recipes }: CmpProps) => {
+    const handle_search = () => get_recipes();
+    const check_search = useMemo(() => filters.search.trim().length === 0, [filters.search]);
+    return (
+        <div className="recipes_ac">
+            <div className="recipes_ac__search">
+                <InputGroup>
+                    <FormControl
+                        className="recipes_ac__search_it"
+                        type="text"
+                        placeholder="Поиск..."
+                        value={filters.search}
+                        onChange={(e: React.FormEvent<FormControlProps>) =>
+                            e.currentTarget.value !== undefined && set_search(e.currentTarget.value)
+                        }
+                    />
+                    <InputGroup.Append>
+                        <Button
+                            className="recipes_ac__search_btn"
+                            onClick={handle_search}
+                            disabled={check_search}>
+                            <FontAwesomeIcon icon={faSearch} />
+                        </Button>
+                    </InputGroup.Append>
+                </InputGroup>
+            </div>
+            <div className="recipes_ac__filter">Filter</div>
+            <div className="recipes_ac__new">
+                Не нашли нужного рецепта?
+                <Link to="/new-recipe">
+                    <p className="recipes_ac__new_a">Добавьте свой!</p>
+                </Link>
+            </div>
+        </div>
+    );
+}, areEq);
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(
-    memo(({ filters, set_search, get_recipes }: CmpProps) => {
-        const handle_search = () => get_recipes();
-        const check_search = useMemo(() => filters.search.trim().length === 0, [filters.search]);
-        return (
-            <div className="recipes_ac">
-                <div className="recipes_ac__search">
-                    <InputGroup>
-                        <FormControl
-                            type="text"
-                            placeholder="Поиск..."
-                            value={filters.search}
-                            onChange={(e: React.FormEvent<FormControlProps>) =>
-                                e.currentTarget.value !== undefined &&
-                                set_search(e.currentTarget.value)
-                            }
-                        />
-                        <InputGroup.Append>
-                            <Button onClick={handle_search} disabled={check_search}>
-                                <FontAwesomeIcon icon={faSearch} />
-                            </Button>
-                        </InputGroup.Append>
-                    </InputGroup>
-                </div>
-                <div className="recipes_ac__filter">Filter</div>
-                <div className="recipes_ac__new">
-                    Не нашли нужного рецепта?
-                    <Link to="/new-recipe">
-                        <p className="recipes_ac__new_a">Добавьте свой!</p>
-                    </Link>
-                </div>
-            </div>
-        );
-    }, areEq)
-);
+)(RecipesActions);

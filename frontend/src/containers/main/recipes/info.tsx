@@ -49,7 +49,7 @@ export default memo(({ recipe, show, on_hide }: CmpProps) => {
                     <ButtonGroup>
                         {recipe.steps.length > 0 && now !== 0 && (
                             <Button
-                                className="recipe_info__btn"
+                                className="recipe_info__btn recipe_info__btn-back"
                                 onClick={() => setCurStep(curStep - 1)}>
                                 <FontAwesomeIcon className="recipe_info__icon" icon={faArrowLeft} />
                                 Назад
@@ -57,7 +57,7 @@ export default memo(({ recipe, show, on_hide }: CmpProps) => {
                         )}
                         {recipe.steps.length > 0 && now !== 100 && (
                             <Button
-                                className="recipe_info__btn"
+                                className="recipe_info__btn recipe_info__btn-next"
                                 onClick={() => setCurStep(curStep + 1)}>
                                 Дальше
                                 <FontAwesomeIcon
@@ -72,7 +72,10 @@ export default memo(({ recipe, show, on_hide }: CmpProps) => {
             </Modal.Body>
             <Modal.Footer className="recipe_info__f">
                 {recipe.ingredients.map((ingr, i) => (
-                    <Badge key={`${Date.now()}${ingr.id}${i}`} variant="primary">
+                    <Badge
+                        className="recipe_info__ingr"
+                        key={`${Date.now()}${ingr.id}${i}`}
+                        variant="primary">
                         {ingr.name}
                     </Badge>
                 ))}

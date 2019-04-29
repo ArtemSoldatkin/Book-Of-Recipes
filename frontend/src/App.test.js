@@ -1,30 +1,26 @@
-/*import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-import { createStore, applyMiddleware, compose } from 'redux';
-import { reducer } from './store';
+import React from 'react';
+import { mount, shallow } from 'enzyme';
 import App from './App';
 
-const composeEnhancers =
-    typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-        ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-        : compose;
+let wrapper;
 
-const enhancer = composeEnhancers(applyMiddleware(thunk));
-const store = createStore(reducer, enhancer);
+jest.mock('./containers/header', () => () => <div className="mock_header" />);
+jest.mock('./containers/main', () => () => <div className="mock_main" />);
+jest.mock('./containers/footer', () => () => <div className="mock_footer" />);
 
-it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-        <Provider store={store}>
-            <BrowserRouter>
-                <App />
-            </BrowserRouter>
-        </Provider>,
-        div
-    );
-    ReactDOM.unmountComponentAtNode(div);
+describe('Recipes', () => {
+    beforeEach(() => {
+        wrapper = mount(<App />);
+    });
+
+    test('render', () => {
+        expect(wrapper).toHaveLength(1);
+        expect(wrapper.find('.mock_header')).toHaveLength(1);
+        expect(wrapper.find('.mock_main')).toHaveLength(1);
+        expect(wrapper.find('.mock_footer')).toHaveLength(1);
+    });
+
+    afterEach(() => {
+        wrapper.unmount();
+    });
 });
-*/

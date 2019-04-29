@@ -85,7 +85,7 @@ DATABASES = {
         'USER': 'admin',
         'PASSWORD': '',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5432',
     }
 }
 
@@ -130,7 +130,6 @@ STATIC_URL = '/static/'
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
-    'localhost:8000',
     'http://localhost:3000',
 )
 
