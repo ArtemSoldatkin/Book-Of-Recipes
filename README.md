@@ -1,13 +1,13 @@
 # Client:
 
-## React & TypeScript
+#### React & TypeScript
 
-### Redux, Redux-Thunk
+#### Redux, Redux-Thunk
 
-### Axios
+#### Axios
 
 # Server:
 
-## Python Django REST
+#### Python Django REST
 
-### DB - PostgreSQL
+#### DB - PostgreSQL
