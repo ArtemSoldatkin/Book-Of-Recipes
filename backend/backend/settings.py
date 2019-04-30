@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'book_of_recipes',
         'USER': 'admin',
-        'PASSWORD': '',
+        'PASSWORD': '123',
         'HOST': 'localhost',
         'PORT': '5432',
     }
